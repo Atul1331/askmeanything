@@ -14,6 +14,13 @@ export async function POST(request: Request){
             isVerified: true
         })
 
+        if(existingUserVerifiedByUsername){
+            return Response.json({
+                success: false,
+                message: "Username is already taken"
+            }, { status: 400})
+        }
+
         const existingUserByEmail = await UserModel.findOne({ email })
 
         const verifyCode = Math.floor(100000 + Math.random() * 900000).toString()
@@ -61,12 +68,14 @@ export async function POST(request: Request){
             }, {status: 500})
         }
 
-        if(existingUserVerifiedByUsername){
-            return Response.json({
-                success: false,
-                message: "Username is already taken"
-            }, { status: 400})
-        }
+        return Response.json(
+            {
+              success: true,
+              message: 'User registered successfully. Please verify your account.',
+            },
+            { status: 201 }
+          )
+
     }
     catch(error){
         console.error("Error registering user. ", error)
