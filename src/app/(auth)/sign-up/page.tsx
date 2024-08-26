@@ -114,7 +114,7 @@ const page = () => {
                                     />
                                 </FormControl>
                                 {isCheckingUsername && <Loader2 className="animate-spin" />}
-                                <p className={`test-sm ${usernameMessage === 'Username is available' ? 'text-green-500' : 'text-red-500'}`}>test {usernameMessage}</p>
+                                <p className={`test-sm ${usernameMessage === 'Username is available' ? 'text-green-500' : 'text-red-500'}`}>{usernameMessage}</p>
                                 <FormMessage />
                             </FormItem>
                         )} >
@@ -146,10 +146,6 @@ const page = () => {
                                 </FormLabel>
                                 <FormControl>
                                     <Input type="password" placeholder="password" {...field}
-                                    onChange={(e) => {
-                                        field.onChange(e)
-                                        setUsername(e.target.value)
-                                    }}
                                     ></Input>
                                 </FormControl>
                                 <FormMessage />
