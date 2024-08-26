@@ -30,7 +30,7 @@ export async function POST(request: Request){
                 return Response.json({
                     success: false,
                     message: "User with this email already exists"
-                }, {status: 500})
+                }, {status: 400})
             }
             else{
                 const hashedPassword = await bcrypt.hash(password, 10)
