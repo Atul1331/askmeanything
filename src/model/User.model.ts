@@ -1,7 +1,8 @@
 import mongoose, { Schema } from "mongoose"
 
 // creating an interface for Message structure
-export interface Message {
+export interface Message extends Document {
+    _id: any
     content: string,
     createdAt: Date,
 }
