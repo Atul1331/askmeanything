@@ -2,7 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
 import bcrypt from "bcryptjs"
 
-import { sendVerificationEmail } from "@/helpers/sendVerificationEmail"
+import { plunk } from "@/lib/plunk";
 
 export async function POST(request: Request){
     await dbConnect()
@@ -59,12 +59,23 @@ export async function POST(request: Request){
         }
 
         // send verification email
-        const emailresponse = await sendVerificationEmail(email, username, verifyCode)
+        
 
-        if(!emailresponse.success){
+        const plunkEmailResponse = await plunk.events.track({
+            event: "user-verification",
+            email, 
+            data : {
+                username,
+                code: verifyCode
+            }
+        })
+
+       // console.log(plunkEmailResponse.success)
+
+        if(!plunkEmailResponse.success){
             return Response.json({
                 success: false,
-                message: emailresponse.message
+                message: "Error sending verification code"
             }, {status: 500})
         }
 

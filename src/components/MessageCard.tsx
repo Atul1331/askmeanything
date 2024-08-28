@@ -40,7 +40,7 @@ const MessageCard = ({ message, onMessageDelete}: MessageCardProps) => {
             title: response.data.message,
             
         })
-        onMessageDelete(message._id)
+        onMessageDelete(message._id as string)
     }
 
 
@@ -48,10 +48,10 @@ const MessageCard = ({ message, onMessageDelete}: MessageCardProps) => {
   return (
     <Card>
         <CardHeader>
-            <CardTitle>Card Title</CardTitle>
+            <CardTitle>{message.content}</CardTitle>
             <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive"><X className="w-5 h-5"/></Button>
+        <Button className="p-2 w-8 h-8 ml-[90%]" variant="destructive"><X className="w-5 h-5"/></Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -68,10 +68,10 @@ const MessageCard = ({ message, onMessageDelete}: MessageCardProps) => {
       </AlertDialogContent>
     </AlertDialog>
 
-            <CardDescription>Card Description</CardDescription>
+            <CardDescription>{message.createdAt.toString()}</CardDescription>
         </CardHeader>
         <CardContent>
-            <p>Card Content</p>
+            <p></p>
         </CardContent>
     </Card>
 
