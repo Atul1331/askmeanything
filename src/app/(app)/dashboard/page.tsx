@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import axios, { AxiosError } from "axios"
 import { Loader2, RefreshCcw } from "lucide-react"
 import { useSession } from "next-auth/react"
-import { useCallback, useEffect, useState } from "react"
+import { Key, useCallback, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 
 const page = () => {
@@ -175,7 +175,7 @@ const page = () => {
         {messages.length > 0 ? (
           messages.map((message, index) => (
             <MessageCard
-              key={message._id}
+              key={message._id as Key}
               message={message}
               onMessageDelete={handleDeleteMessage}
             />
