@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { signIn } from "next-auth/react"
  
-const page = () => {
+const Page = () => {
     
     const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -110,4 +110,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
